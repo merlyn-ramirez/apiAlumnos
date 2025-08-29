@@ -2,7 +2,8 @@
 @section('titulo') <h1>Registrar alumno</h1> @stop
 
 @section('contenido')
-    <form action="" method="POST">
+    <form action="{{ url('/guardarAlumno') }}" method="POST">
+        @csrf <!--Laravel envía un token por seguridad-->
         <div class="form-group mb-4">
             <label for="">Nombre:</label>
             <input type="text" class="form-control" name="nombre" required>

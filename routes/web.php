@@ -27,3 +27,7 @@ route::get('/calcularCalificacion', [AlumnoController::class, 'calcular']);
 //rutas del CRUD Alumno
 route::get('/alumnos',[AlumnoController::class,'getAlumnos']);
 route::get('/registrarAlumno',[AlumnoController::class,'registrarAlumno']); //lleva a la función registraAlumno del AlumnoController
+route::post('/guardarAlumno', [AlumnoController::class,'guardarAlumno']);
+route::get('/alumno/{id}',[AlumnoController::class, 'eliminarAlumno']);
+route::get('/editarAlumno/{id}',[AlumnoController::class,'editarAlumno']);
+route::post('/actualizarAlumno/{id}',[AlumnoController::class,'actualizarAlumno']);

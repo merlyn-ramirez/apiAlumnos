@@ -28,8 +28,8 @@
                         <td>{{ $alumno->sexo}}</td>
                         <td>{{ $alumno->especialidad}}</td>
                         <td>
-                            <a href="" class="btn btn-primary btn-sm">Editar</a>
-                            <a href="" class="btn btn-danger btn-sm">Eliminar</a>
+                            <a href="{{ url('/editarAlumno') }}/{{ $alumno->id }}" class="btn btn-primary btn-sm">Editar</a>
+                            <a href="{{ url('/alumno')}}/{{ $alumno->id }}" class="btn btn-danger btn-sm">Eliminar</a>
                         </td>
                     </tr>
                     @endforeach
