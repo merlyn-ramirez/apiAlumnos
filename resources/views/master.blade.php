@@ -36,6 +36,21 @@
                 <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
+                
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Bienvenido, {{ Auth::user()->name }}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit">Cerrar sesión</button>
+                        </form>
+                    </li>
+                </ul>
+                </li>
+
             </ul>
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

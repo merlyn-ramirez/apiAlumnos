@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AlumnoController; //importamos el controlador
 
 /*
 |--------------------------------------------------------------------------
@@ -12,22 +14,29 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-use App\Http\Controllers\AlumnoController; //importamos el controlador
 
-
-
-Route::get('/inicio', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
- //rutas del proyecto
-route::get('/consulta',[AlumnoController::class, 'consulta']); 
-//creo una ruta para que me lleve al controlador (consulta) y ejecuta una función que se llama consulta
-route::get('/calcularCalificacion', [AlumnoController::class, 'calcular']);
+});*/
 
-//rutas del CRUD Alumno
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    //rutas del CRUD Alumno
 route::get('/alumnos',[AlumnoController::class,'getAlumnos']);
+route::get('/',[AlumnoController::class,'getAlumnos']);
 route::get('/registrarAlumno',[AlumnoController::class,'registrarAlumno']); //lleva a la función registraAlumno del AlumnoController
 route::post('/guardarAlumno', [AlumnoController::class,'guardarAlumno']);
 route::get('/alumno/{id}',[AlumnoController::class, 'eliminarAlumno']);
 route::get('/editarAlumno/{id}',[AlumnoController::class,'editarAlumno']);
 route::post('/actualizarAlumno/{id}',[AlumnoController::class,'actualizarAlumno']);
+
+});
+
+require __DIR__.'/auth.php';
